@@ -25,8 +25,7 @@ class Player:
         :return:
         '''
 
-        global location
-        newposition = map[location][dx,dy]
+        newposition = map[locations][dx,dy]
         if newposition == -1:
             print('This way is blocked')
         elif newposition >= 0:

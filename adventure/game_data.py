@@ -1,9 +1,7 @@
-
-
 class Location:
-    global position
 
-    def __init__(self):
+
+    def __init__(self,position, brief_descripition,long_description,commands,items,times_visited):
         '''Creates a new location.          
         ADD NEW ATTRIBUTES TO THIS CLASS HERE TO STORE DATA FOR EACH LOCATION.
         
@@ -25,31 +23,29 @@ class Location:
 
 
         self.position = position
-        self.briefdesc = briefdesc
-        self.longdesc = longdesc
+        self.briefdesc = brief_descripition
+        self.longdesc = long_description
         self.commands = commands
         self.items = items
         self.times_visited = 0
 
-
-        pass
 
 
 
     def get_brief_description (self):
         '''Return str brief description of location.'''
 
-        return briefdesc
+        return self.briefdesc
 
-        pass
+
 
     def get_full_description (self):
         '''Return str long description of location.'''
 
-        return longdesc
+        return self.longdesc
 
 
-        pass
+
 
     def available_actions(self):
         '''
@@ -57,7 +53,10 @@ class Location:
         Return list of the available actions in this location.
         The list of actions should depend on the items available in the location
         and the x,y position of this location on the world map.'''
-        pass
+
+        return self.commands
+
+
 
 class Item:
 
@@ -204,7 +203,10 @@ class World:
 
             return return_location
 
-        pass
+
+
+
+
 
     def load_items(self, filename):
         '''
@@ -214,19 +216,48 @@ class World:
         :param filename:
         :return:
         '''
-        file = open(filename, 'r')
-        L = []
-        for items in filename:
-            if items in locations:
-                if items
+
+        file = open(filename , 'r')
+        return_items = {}
+        for line in file:
+
+            index_of_items =""
+            points = ""
+            briefdesc = ""
+            longdesc = ""
+            commands = []
 
 
 
+            times_visted = 0
+
+            if  "LOCATION:" in line:
+                index_of_item = int(line.split(" ")[1].rstrip("\n"))
+
+            if "Points:" in line:
+                points = int(line.split(" ")[1].rstrip("\n"))
+
+            if "brief description:" in line :
+
+                briefdesc = line.strip("brief description:")
+
+
+            if "long description:" in line:
+                longdesc = line.strip("long description:").rstrip("\n")
+
+
+            if "list of commands:" in line :
+                commands = line.strip("list of commands:").rstrip("\n")
+                commands = commands.split(",")
+                print(commands)
 
 
 
+            items = items(index_of_items,briefdesc,longdesc,commands,times_visted)
 
+            return_items [index_of_items] = items
 
+            return return_items
 
         pass
 
@@ -238,7 +269,7 @@ class World:
         :param y: integer y representing y-coordinate of world map
         :return: Return Location object associated with this location if it does. Else, return None.
         '''
-        if location
+       # if location
 
 
 
@@ -254,5 +285,9 @@ class World:
 
 
         pass
+
 x = World("map.txt","locations.txt","items.txt")
+print(x.load_map("map.txt"))
 print(x.load_locations("locations.txt"))
+print(x.get_location("locations.txt"))
+print(x.load_items("items.txt"))
