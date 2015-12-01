@@ -29,6 +29,8 @@ class Location:
         self.longdesc = longdesc
         self.commands = commands
         self.items = items
+        self.times_visited = 0
+
 
         pass
 
@@ -161,12 +163,46 @@ class World:
         :return:
         '''
         file = open(filename , 'r')
-        l = []
+        return_location = {}
         for line in file:
 
-            if i == "location":
-             readline()
+            index_of_location =""
+            points = ""
+            briefdesc = ""
+            longdesc = ""
+            commands = []
 
+
+            items = None
+            times_visted = 0
+
+            if  "Location:" in line:
+                index_of_location = int(line.split(" ")[1].rstrip("\n"))
+
+            if "Points:" in line:
+                points = int(line.split(" ")[1].rstrip("\n"))
+
+            if "brief description:" in line :
+
+                briefdesc = line.strip("brief description:")
+
+
+            if "long description:" in line:
+                longdesc = line.strip("long description:").rstrip("\n")
+
+
+            if "list of commands:" in line :
+                commands = line.strip("list of commands:").rstrip("\n")
+                commands = commands.split(",")
+                print(commands)
+
+
+
+            location = Location(index_of_location,briefdesc,longdesc,commands,items,times_visted)
+
+            return_location [index_of_location] = location
+
+            return return_location
 
         pass
 
@@ -218,3 +254,5 @@ class World:
 
 
         pass
+x = World("map.txt","locations.txt","items.txt")
+print(x.load_locations("locations.txt"))
