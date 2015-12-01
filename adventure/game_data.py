@@ -162,51 +162,10 @@ class World:
         '''
         file = open(filename , 'r')
         l = []
-        for i in filename:
-            if filename == "locations":
-                if locations == -1:
-                   print("there is no way ")
-                   return
-                if locations == 1:
-                    l.append(position)
-                    l.append(briefdesc)
-                    l.append(longdesc)
-                    return l
-                if locations == 2:
-                    l.append(position)
-                    l.append(briefdesc)
-                    l.append(longdesc)
-                    return l
-                if locations == 3:
-                    l.append(position)
-                    l.append(briefdesc)
-                    l.append(longdesc)
-                    return l
-                if locations == 4 :
-                    l.append(position)
-                    l.append(briefdesc)
-                    l.append(longdesc)
-                    return l
-                if locations == 5:
-                    l.append(position)
-                    l.append(briefdesc)
-                    l.append(longdesc)
-                    return l
-                if locations == 6:
-                    l.append(position)
-                    l.append(briefdesc)
-                    l.append(longdesc)
-                    return l
-                if locations == 7:
-                    l.append(position)
-                    l.append(briefdesc)
-                    l.append(longdesc)
-                    return l
-                if locations == 8:
-                    l.append(position)
-                    l.append(briefdesc)
-                    l.append(longdesc)
-                    return l
+        for line in file:
+
+            if i == "location":
+             readline()
 
 
         pass
@@ -220,6 +179,10 @@ class World:
         :return:
         '''
         file = open(filename, 'r')
+        L = []
+        for items in filename:
+            if items in locations:
+                if items
 
 
 
