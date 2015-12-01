@@ -81,14 +81,16 @@ class Item:
         self.target = target
         self.target_points = target_points
 
-    def get_starting_location (self):
+    def get_starting_location (self, starting_lcoation):
         '''Return int location where item is first found.'''
-
+        return World.get
 
         pass
 
-    def get_name(self):
+    def get_name(self ,name):
         '''Return the str name of the item.'''
+
+        return World.get_name(self.name)
 
         pass
 
@@ -121,6 +123,7 @@ class World:
         :param itemdata: name of text file containing item data (format left up to you)
         :return:
         '''
+
         self.map = self.load_map(mapdata) # The map MUST be stored in a nested list as described in the docstring for load_map() below
         # self.locations ... You may choose how to store location and item data.
         self.load_locations(locdata) # This data must be stored somewhere. Up to you how you choose to do it...
@@ -178,7 +181,7 @@ class World:
             if  "Location:" in line:
                 index_of_location = int(line.split(" ")[1].rstrip("\n"))
 
-            if "Points:" in line:
+            if "points:" in line:
                 points = int(line.split(" ")[1].rstrip("\n"))
 
             if "brief description:" in line :
@@ -197,7 +200,7 @@ class World:
 
 
 
-            location = Location(index_of_location,briefdesc,longdesc,commands,items,times_visted)
+            location = Location(index_of_location,briefdesc,longdesc,points, commands,items,times_visted)
 
             return_location [index_of_location] = location
 
@@ -231,7 +234,7 @@ class World:
 
             times_visted = 0
 
-            if  "LOCATION:" in line:
+            if  "Location:" in line:
                 index_of_item = int(line.split(" ")[1].rstrip("\n"))
 
             if "Points:" in line:
@@ -253,7 +256,7 @@ class World:
 
 
 
-            items = items(index_of_items,briefdesc,longdesc,commands,times_visted)
+            items = items(index_of_items,briefdesc,longdesc,points,commands,times_visted)
 
             return_items [index_of_items] = items
 
@@ -269,7 +272,15 @@ class World:
         :param y: integer y representing y-coordinate of world map
         :return: Return Location object associated with this location if it does. Else, return None.
         '''
-       # if location
+
+        Locations = []
+        for location in self.map:
+            for (x,y) in location:
+                if self.map[location][x,y] not in Locations:
+                    Locations.append(self.map[location][x,y])
+        else:
+            return NoneType
+
 
 
 

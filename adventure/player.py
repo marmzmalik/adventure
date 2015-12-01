@@ -59,14 +59,9 @@ class Player:
         :return:
         '''
 
-        itemadd = item.lower()
-        if itemadd == ' ':
-            print (' take what?')
-            return
-
-
-
-
+        if item not in self.inventory:
+            self.inventory.add(item)
+        return self.item
 
     def remove_item(self, item):
         '''
@@ -74,6 +69,9 @@ class Player:
         :param item:
         :return:
         '''
+        if item in self.inventory:
+            self.inventory.remove(item)
+
 
 
 
