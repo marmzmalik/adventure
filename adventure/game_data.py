@@ -20,13 +20,22 @@ class Location:
         The only thing you must NOT change is the name of this class: Location.
         All locations in your game MUST be represented as an instance of this class.
 
-        :param: position = coordinate
-        :param
-        :param
-        :param
+        :param: position: coordinate of where the player is
+        :param: brief_description: a small description on the location
+        :param: long_description: a longer description on the location
+        :param: commands: directions to move
+        :param: items: items that in the location
+        :param: times_visted: how many times player visited the location before
+
 
         Example
-        get_brief_description: "
+        position: ( 0 , 0)
+        brief_description: " You are in Starbucks."
+        long_description: " You are in the cozy warmest place of them all at UTM. It's where everyone comes to get their warm spice lattes. You are are starbuck."
+        commands: North, South, East, West
+        items: " There is gum on the fourth floor of the library"
+        times_visited: library visited: 1
+
         '''
 
 
@@ -82,6 +91,17 @@ class Item:
 
         The only thing you must NOT change is the name of this class: Item.
         All item objects in your game MUST be represented as an instance of this class.
+
+        :param: name: name of the item
+        :param: start: where the item is first located
+        :param: target: where the item should go ( target location)
+        :param: target_points: how many points does the item count for
+
+        Example
+        name: "gum"
+        start: "library fourth floor"
+        target: "in players mouth"
+        target_points: " 2 points"
         '''
 
         self.name = name
@@ -131,6 +151,9 @@ class World:
         :param locdata: name of text file containing location data (format left up to you)
         :param itemdata: name of text file containing item data (format left up to you)
         :return:
+
+
+
         '''
 
         self.map = self.load_map(mapdata) # The map MUST be stored in a nested list as described in the docstring for load_map() below
@@ -148,9 +171,13 @@ class World:
         RETURN THIS NEW NESTED LIST.
         :param filename: string that gives name of text file in which map data is located
         :return: return nested list of strings/integers representing map of game world as specified above
-        '''
+        example:
 
-        #http://letstalkdata.com/2014/08/how-to-write-a-text-adventure-in-python-part-4-the-game-loop/
+        1   0   -1
+        2   3   4
+        -1  5   6
+
+        '''
 
         file = open(filename, "r")
         l = []
@@ -171,7 +198,10 @@ class World:
         Make sure the Location class is used to represent each location.
         Change this docstring as needed.
         :param filename:
-        :return:
+        :return: the list return_location
+
+        Example:
+
         '''
         file = open(filename , 'r')
         return_location = {}
@@ -188,10 +218,10 @@ class World:
             times_visted = 0
 
             if  "Location:" in line:
-                index_of_location = int(line.split(" ")[1].rstrip("\n"))
+                index_of_location = int(line.split(" ")[1].strip("\n"))
 
             if "points:" in line:
-                points = int(line.split(" ")[1].rstrip("\n"))
+                points = int(line.split(" ")[1].strip("\n"))
 
             if "brief description:" in line :
 
@@ -199,11 +229,11 @@ class World:
 
 
             if "long description:" in line:
-                longdesc = line.strip("long description:").rstrip("\n")
+                longdesc = line.strip("long description:").strip("\n")
 
 
             if "list of commands:" in line :
-                commands = line.strip("list of commands:").rstrip("\n")
+                commands = line.strip("list of commands:").strip("\n")
                 commands = commands.split(",")
                 print(commands)
 
@@ -226,7 +256,7 @@ class World:
         Make sure the Item class is used to represent each item.
         Change this docstring accordingly.
         :param filename:
-        :return:
+        :return: the list return_items
         '''
 
         file = open(filename, 'r')
@@ -244,10 +274,10 @@ class World:
             times_visted = 0
 
             if  "Location:" in line:
-                index_of_item = int(line.split(" ")[1].rstrip("\n"))
+                index_of_item = int(line.split(" ")[1].strip("\n"))
 
             if "Points:" in line:
-                points = int(line.split(" ")[1].rstrip("\n"))
+                points = int(line.split(" ")[1].strip("\n"))
 
             if "brief description:" in line :
 
@@ -255,11 +285,11 @@ class World:
 
 
             if "long description:" in line:
-                longdesc = line.strip("long description:").rstrip("\n")
+                longdesc = line.strip("long description:").strip("\n")
 
 
             if "list of commands:" in line :
-                commands = line.strip("list of commands:").rstrip("\n")
+                commands = line.strip("list of commands:").strip("\n")
                 commands = commands.split(",")
                 print(commands)
 
@@ -289,9 +319,6 @@ class World:
                 return None
 
 
-        #http://inventwithpython.com/blog/2014/12/11/making-a-text-adventure-game-with-the-cmd-and-textwrap-python-modules/
-        #https://github.com/soapy1/TextAdventure/blob/master/textAdventure.py
-        #https://www.youtube.com/watch?v=8CDePunJlck
 
 
 

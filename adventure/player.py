@@ -20,8 +20,8 @@ class Player:
     def move(self, dx, dy):
         '''
         Given integers dx and dy, move player to new location (self.x + dx, self.y + dy)
-        :param dx:
-        :param dy:
+        :param dx: x coordinate
+        :param dy: y corrdinate
         :return:
         '''
         self.x += dx
@@ -31,7 +31,9 @@ class Player:
 
     def move_north(self):
         '''These integer directions are based on how the map must be stored
-        in our nested list World.map'''
+        in our nested list World.map
+
+        '''
         """Go to the 4th floor of the library, if possible."""
 
         self.move(0,0)
@@ -50,7 +52,7 @@ class Player:
         '''
         Add item to inventory.
         :param item:
-        :return:
+        :return: True if item is added into inventory
         '''
 
         if item not in self.inventory:
@@ -61,7 +63,7 @@ class Player:
         '''
         Remove item from inventory.
         :param item:
-        :return:
+        :return: True if item is removed from inventory
         '''
         if item in self.inventory:
             self.inventory.remove(item)
@@ -74,10 +76,10 @@ class Player:
     def get_inventory(self):
         '''
         Return inventory.
-        :return:
+        :return: inventory
         '''
 
         return self.inventory
 
-#http://codereview.stackexchange.com/questions/37677/a-small-python-text-adventure-frame
+
 
