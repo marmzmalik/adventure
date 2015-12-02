@@ -1,7 +1,7 @@
 class Location:
 
 
-    def __init__(self,position, brief_descripition,long_description,commands,items,times_visited):
+    def __init__(self,position, brief_description,long_description,commands,items, times_visited):
         '''Creates a new location.          
         ADD NEW ATTRIBUTES TO THIS CLASS HERE TO STORE DATA FOR EACH LOCATION.
         
@@ -19,12 +19,20 @@ class Location:
   
         The only thing you must NOT change is the name of this class: Location.
         All locations in your game MUST be represented as an instance of this class.
+
+        :param: position = coordinate
+        :param
+        :param
+        :param
+
+        Example
+        get_brief_description: "
         '''
 
 
         self.position = position
-        self.briefdesc = brief_descripition
-        self.longdesc = long_description
+        self.brief_description = brief_description
+        self.long_description = long_description
         self.commands = commands
         self.items = items
         self.times_visited = 0
@@ -35,7 +43,7 @@ class Location:
     def get_brief_description (self):
         '''Return str brief description of location.'''
 
-        return self.briefdesc
+        return self.brief_description
 
 
 
@@ -81,27 +89,28 @@ class Item:
         self.target = target
         self.target_points = target_points
 
-    def get_starting_location (self, starting_lcoation):
+    def get_starting_location (self):
         '''Return int location where item is first found.'''
-        return World.get
+        return self.start
 
         pass
 
-    def get_name(self ,name):
+    def get_name(self):
         '''Return the str name of the item.'''
 
-        return World.get_name(self.name)
+        return self.name
+
 
         pass
 
     def get_target_location (self):
         '''Return item's int target location where it should be deposited.'''
-
+        return self.target
         pass
 
     def get_target_points (self):
         '''Return int points awarded for depositing the item in its target location.'''
-
+        return self.target_points
         pass
 
 class World:
@@ -220,7 +229,7 @@ class World:
         :return:
         '''
 
-        file = open(filename , 'r')
+        file = open(filename, 'r')
         return_items = {}
         for line in file:
 
@@ -273,17 +282,11 @@ class World:
         :return: Return Location object associated with this location if it does. Else, return None.
         '''
 
-        Locations = []
-        for location in self.map:
-            for (x,y) in location:
-                if self.map[location][x,y] not in Locations:
-                    Locations.append(self.map[location][x,y])
-        else:
-            return NoneType
-
-
-
-
+        for cordinates in Location:
+            if y == y and x == x :
+                return Location
+            else:
+                return None
 
 
         #http://inventwithpython.com/blog/2014/12/11/making-a-text-adventure-game-with-the-cmd-and-textwrap-python-modules/
