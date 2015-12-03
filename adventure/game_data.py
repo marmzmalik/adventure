@@ -49,6 +49,7 @@ class Location:
 
 
 
+
     def get_brief_description (self):
         '''Return str brief description of location.
         :param:

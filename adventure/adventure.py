@@ -1,8 +1,7 @@
 from game_data import World, Item, Location
 from player import Player
-import winsound
 
-# when player wins the game
+# when player wins the game, put this code in
 import winsound
 
 freq = 2500
@@ -26,8 +25,7 @@ if __name__ == "__main__":
 
         #put in locations, everytime the reach closer to the destination they will earn two points
         #when they reach farther from the location they will lose 1 point
-        PLAYER.points+= 2
-        PLAYER.points-= 1
+
 
 
         print("What to do? \n")

@@ -152,4 +152,16 @@ class Player:
         return self.inventory
 
 
+    def points_location(self):
+        '''
 
+        :param self:
+        :return: every time player gets closer to IB they will get points according to their locations
+
+        Example:
+        Player at 3rd floor library
+        points: -1
+        Player at Starbucks
+        points: 1
+        '''
+        return self.points
